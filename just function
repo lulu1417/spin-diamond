@@ -1,0 +1,81 @@
+    function diamond(){
+
+        $length = 9;
+
+        //initialize array
+        for($i = 0; $i < $length; $i++){
+            for($j=0;$j<$length;$j++){
+                $arr[$i][$j] = ' ';
+            }
+        }
+
+        $star = 5; //number of stars in first row
+
+        $row = 1;
+
+        while($row < 4) {
+
+            //middle
+            if($row == 1){
+                $arr[$row][$length/2] = ' ';
+            }else{
+                $arr[$row][$length/2] = '*';
+            }
+
+            //col
+            for ($add = 1; $add < $star/2; $add++) {
+                $arr[$row][4 + $add] = '*';
+                $arr[$row][4 - $add] = '*';
+            }
+
+            while($add < $length/2){
+                $arr[$row][$length/2+$add] = ' ';
+                $arr[$row][$length/2-$add] = ' ';
+                $add++;
+            }
+
+            $row ++;
+            $star += 2;
+
+        }
+        $star = 9;
+        while($row < $length) {
+
+            //middle
+            $arr[$row][$length/2] = '*';
+
+            //col
+            for ($add = 1; $add < $star/2; $add++) {
+                $arr[$row][4 + $add] = '*';
+                $arr[$row][4 - $add] = '*';
+            }
+
+            while($add < $length/2){
+                $arr[$row][$length/2+$add] = ' ';
+                $arr[$row][$length/2-$add] = ' ';
+                $add++;
+            }
+
+            $row ++;
+            $star -= 2;
+
+        }
+
+        //exchange row and column
+        for($i = 0; $i < $length/2; $i++){
+            for($j = $length/2-1; $j < $length; $j++){
+                $temp = $arr[$i][$j];
+                $arr[$i][$j] = $arr[$j][$i];
+                $arr[$j][$i] = $temp;
+            }
+        }
+        //
+        $str = '';
+        for($i = 0; $i < $length; $i++){
+            for($j = 0; $j < $length; $j++){
+                $str = $str.$arr[$i][$j];
+            }
+            $str = $str."\n";
+        }
+        return $str;
+    }
